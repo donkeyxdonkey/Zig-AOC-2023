@@ -1,98 +1,53 @@
-const std = @import("std");
-const data = @embedFile("input.txt");
-const print = std.debug.print;
-
-const numbers = [_][]const u8{ "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+const day01 = @import("calendar\\day01.zig");
+const day02 = @import("calendar\\day02.zig");
+const day03 = @import("calendar\\day03.zig");
+const day04 = @import("calendar\\day04.zig");
+const day05 = @import("calendar\\day05.zig");
+const day06 = @import("calendar\\day06.zig");
+const day07 = @import("calendar\\day07.zig");
+const day08 = @import("calendar\\day08.zig");
+const day09 = @import("calendar\\day09.zig");
+const day10 = @import("calendar\\day10.zig");
+const day11 = @import("calendar\\day11.zig");
+const day12 = @import("calendar\\day12.zig");
+const day13 = @import("calendar\\day13.zig");
+const day14 = @import("calendar\\day14.zig");
+const day15 = @import("calendar\\day15.zig");
+const day16 = @import("calendar\\day16.zig");
+const day17 = @import("calendar\\day17.zig");
+const day18 = @import("calendar\\day18.zig");
+const day19 = @import("calendar\\day19.zig");
+const day20 = @import("calendar\\day20.zig");
+const day21 = @import("calendar\\day21.zig");
+const day22 = @import("calendar\\day22.zig");
+const day23 = @import("calendar\\day23.zig");
+const day24 = @import("calendar\\day24.zig");
+const day25 = @import("calendar\\day25.zig");
 
 pub fn main() !void {
-    try partOne(false);
-    try partTwo(false);
-}
-
-fn partTwo(debugPrint: bool) !void {
-    var lines = std.mem.splitSequence(u8, data, "\n");
-    var result: u32 = 0;
-
-    while (lines.next()) |line| {
-        result += try calcLine2(line);
-        if (debugPrint)
-            try safePrint("{} result {s}\n", .{ result, line });
-    }
-
-    try safePrint("Result Part2: {}\n", .{result});
-}
-
-fn calcLine2(line: []const u8) !u32 {
-    var start: u32 = 0;
-
-    outer: for (0..line.len) |i| {
-        if (std.ascii.isDigit(line[i])) {
-            start = @intCast(line[i] - '0');
-            break;
-        }
-
-        const slice = line[i..];
-        for (numbers, 0..) |n, j| {
-            if (std.mem.startsWith(u8, slice, n)) {
-                start = @intCast(j + 1); // + för 0 index
-                break :outer;
-            }
-        }
-    }
-
-    start *= 10;
-    var end: u32 = 0;
-
-    var i: usize = line.len - 1;
-    outer: while (i >= 0) : (i -= 1) {
-        if (std.ascii.isDigit(line[i])) {
-            end = @intCast(line[i] - '0');
-            break;
-        }
-
-        const slice = line[i..];
-        for (numbers, 0..) |n, j| {
-            if (std.mem.startsWith(u8, slice, n)) {
-                end = @intCast(j + 1); // + för 0 index
-                break :outer;
-            }
-        }
-    }
-
-    return start + end;
-}
-
-fn partOne(debugPrint: bool) !void {
-    var lines = std.mem.splitSequence(u8, data, "\n");
-    var result: u32 = 0;
-    while (lines.next()) |line| {
-        result += try calcLine1(line);
-        if (debugPrint) {
-            try safePrint("{} result {s}\n", .{ result, line });
-        }
-    }
-
-    try safePrint("Result Part1: {}\n", .{result});
-}
-
-fn calcLine1(line: []const u8) !u32 {
-    var value = [_]u8{ '0', '0' };
-    var firstSet = false;
-
-    for (line) |char| {
-        if (std.ascii.isDigit(char)) {
-            if (!firstSet) {
-                value[0] = char;
-                firstSet = true;
-            }
-            value[1] = char;
-        }
-    }
-
-    return try std.fmt.parseInt(u32, &value, 10);
-}
-
-fn safePrint(comptime fmt: []const u8, args: anytype) !void {
-    print(fmt, args);
-    return;
+    try day01.run(false);
+    try day02.run(true);
+    try day03.run(true);
+    try day04.run(true);
+    try day05.run(true);
+    try day06.run(true);
+    try day07.run(true);
+    try day08.run(true);
+    try day09.run(true);
+    try day10.run(true);
+    try day11.run(true);
+    try day12.run(true);
+    try day13.run(true);
+    try day14.run(true);
+    try day15.run(true);
+    try day16.run(true);
+    try day17.run(true);
+    try day18.run(true);
+    try day19.run(true);
+    try day20.run(true);
+    try day21.run(true);
+    try day22.run(true);
+    try day23.run(true);
+    try day24.run(true);
+    try day25.run(true);
 }
