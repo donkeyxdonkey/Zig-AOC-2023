@@ -49,15 +49,15 @@ fn parseLine(line: []const u8, id: u32) !u32 {
 
     var values = std.mem.splitScalar(u8, line, ':');
     while (values.next()) |segment| : (i += 1) {
-        if (i == 0)
+        if (i == 0) // skippar game id som kommer via params
             continue;
 
-        var bice = std.mem.splitScalar(u8, segment[1..], ';');
+        var bice = std.mem.splitScalar(u8, segment[1..], ';'); // splittar bort ;
         while (bice.next()) |leBice| {
-            var kice = std.mem.splitScalar(u8, leBice, ',');
+            var kice = std.mem.splitScalar(u8, leBice, ','); // och ,
             while (kice.next()) |leKice| {
                 var fice = std.mem.splitScalar(u8, std.mem.trim(u8, leKice, " "), ' ');
-                while (fice.next()) |leFice| : (x += 1) {
+                while (fice.next()) |leFice| : (x += 1) { // [0]siffra [1]färg
                     if (x == 0) {
                         count = try std.fmt.parseInt(u32, leFice, 10);
                         continue;
