@@ -25,8 +25,8 @@ const day24 = @import("calendar\\day24.zig");
 const day25 = @import("calendar\\day25.zig");
 
 pub fn main() !void {
-    try day01.run(false);
-    try day02.run(true);
+    try day01.run(true);
+    try day02.run(false);
     try day03.run(true);
     try day04.run(true);
     try day05.run(true);
