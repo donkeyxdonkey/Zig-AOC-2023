@@ -62,14 +62,14 @@ fn calcLine2(line: []const u8) !u32 {
 
     outer: for (0..line.len) |i| {
         if (std.ascii.isDigit(line[i])) {
-            start = @intCast(line[i] - '0');
+            start = @intCast(line[i] - '0'); // lägg på minnet värdelös konvention som borde ha bättre alternativ
             break;
         }
 
         const slice = line[i..];
         for (numbers, 0..) |n, j| {
             if (std.mem.startsWith(u8, slice, n)) {
-                start = @intCast(j + 1); // + för 0 index
+                start = @intCast(j + 1); // + för 0-index array
                 break :outer;
             }
         }
@@ -81,14 +81,14 @@ fn calcLine2(line: []const u8) !u32 {
     var i: usize = line.len - 1;
     outer: while (i >= 0) : (i -= 1) {
         if (std.ascii.isDigit(line[i])) {
-            end = @intCast(line[i] - '0');
+            end = @intCast(line[i] - '0'); // lägg på minnet värdelös konvention som borde ha bättre alternativ
             break;
         }
 
         const slice = line[i..];
         for (numbers, 0..) |n, j| {
             if (std.mem.startsWith(u8, slice, n)) {
-                end = @intCast(j + 1); // + för 0 index
+                end = @intCast(j + 1); // + för 0-index array
                 break :outer;
             }
         }
