@@ -8,7 +8,15 @@ pub fn run(skip: bool) !void {
         return;
 
     try safePrint("Day 3.\n", .{});
+
+    // The engineer explains that an engine part seems to be missing from the engine
+    // If you can add up all the part numbers in the engine schematic, it should be easy to work out which part is missing.
+    // any number adjacent to a symbol, even diagonally, is a "part number" and should be included in your sum.
+    // (Periods (.) do not count as a symbol.)
+    // What is the sum of all of the part numbers in the engine schematic?
     try partOne(false);
+
+    //
     try partTwo(false);
 }
 
